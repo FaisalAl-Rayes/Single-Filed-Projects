@@ -37,7 +37,6 @@ def day_number(year: int, month: int, day: int) -> int:
             number_of_days_passed = number_of_days_passed + day
             print(number_of_days_passed)
             return number_of_days_passed
-            break
 
 
 # day_number(-200,3,2)                  # Checking the ValueError being raised as per line 19
