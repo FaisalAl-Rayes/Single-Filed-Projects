@@ -4,6 +4,7 @@
 
 import os
 import requests
+import re
 from datetime import datetime
 
 
@@ -36,11 +37,15 @@ while True:
 
     # As of the time of uplode of this project the 'cod' key is a string for invalid city name
     # and an integer for the valid city name.
-    if api_json['cod'] == '404':
+
+    pattern = re.compile(r'[2]\d\d')
+    match = pattern.findall(str(api_json['cod']))
+
+    if int(api_json['cod']) == 404:
         print('Invalid city name.')
         count += 1
         continue
-    elif api_json['cod'] == 200:
+    elif int(api_json['cod']) == int(match[0]):
         break
 
 # A function extracting the desired data about the current weather in the given city.
