@@ -35,12 +35,13 @@ while True:
     # API response from our request with extracting the information in a JSON file.
     api_json = requests.get(api_call).json()
 
-    # As of the time of uplode of this project the 'cod' key is a string for invalid city name
-    # and an integer for the valid city name.
-
+    # using regex to make sure that the value of the 'cod' key in the json file repressents
+    # a successful http status code which is denoted with 2XX.
     pattern = re.compile(r'[2]\d\d')
     match = pattern.findall(str(api_json['cod']))
 
+    # As of the time of uplode of this project the 'cod' key is a string for invalid city name
+    # and an integer for the valid city name. To resolve this issue I turn the value to an integer.
     if int(api_json['cod']) == 404:
         print('Invalid city name.')
         count += 1
