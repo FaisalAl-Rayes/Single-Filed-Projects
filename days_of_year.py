@@ -45,7 +45,3 @@ def day_number(year: int, month: int, day: int) -> int:
 # day_number(2021,3,200)                # Checking the ValueError being raised as per line 25
 # day_number(2024,3,1)                  # Checking the inclusion of Feb 29
 # day_number(2021,3,1)                  # Checking the exclusion of Feb 29
-
-
-
-
