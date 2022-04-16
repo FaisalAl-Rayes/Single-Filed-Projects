@@ -36,15 +36,16 @@ while True:
     api_json = requests.get(api_call).json()
 
     # using regex to make sure that the value of the 'cod' key in the json file repressents
-    # a successful http status code 2XX, a client error status code 4XX, and a server error 5XX.
-    pattern_successful = re.compile(r'[2]\d{2}')
+    # a successful http status code 2XX,a redirection code 3XX, a client error status code 4XX,
+    # and a server error 5XX.
+    pattern_successful = re.compile(r'[2]\d{2}|[3]\d{2}')
     match_successful = pattern_successful.findall(str(api_json['cod']))
-    pattern_unsuccessful = re.compile(r'[4]\d{2}|[5]\d{2}')
-    match_unsuccessful = pattern_unsuccessful.findall(str(api_json['cod']))
+    pattern_error = re.compile(r'[4]\d{2}|[5]\d{2}')
+    match_error = pattern_error.findall(str(api_json['cod']))
     
     # As of the time of uplode of this project the 'cod' key is a string for invalid city name
     # and an integer for the valid city name. To resolve this issue I turn the value to an integer.
-    if str(api_json['cod']) in match_unsuccessful:
+    if str(api_json['cod']) in match_error:
         print('Invalid city name.')
         count += 1
         continue
