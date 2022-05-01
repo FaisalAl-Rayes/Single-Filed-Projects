@@ -92,4 +92,4 @@ class Unsplash:
 if __name__ == "__main__":
     search_term = input("What pictures would you like to download? ")
     imgs_to_download = int(input("How many of that would you like to download? "))
-    Car_Unsplash = Unsplash(search_term, imgs_to_download)
+    Unsplash_Scrape = Unsplash(search_term, imgs_to_download)
