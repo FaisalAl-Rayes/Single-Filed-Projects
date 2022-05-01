@@ -15,7 +15,7 @@ formatter = logging.Formatter(
     '%(asctime)s: %(name)s: %(levelname)s: %(message)s')
 
 file_handler = logging.FileHandler('Unsplash-Download.log')
-file_handler.setLevel(logging.DEBUG)
+file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 
 stream_handler = logging.StreamHandler()
@@ -61,7 +61,7 @@ class Unsplash:
         return img_urls
 
     def download_img(self, img_url: str):
-        # Setting the image name and setting up the next count for the next name.
+        # Setting the image name and setting up the next count for the next.
         img_name = f'{self.search_term}_{self.count + 1}.jpg'
         self.count += 1
 
@@ -77,7 +77,7 @@ class Unsplash:
         img_full_path = os.path.join(os.path.realpath(os.getcwd()),download_dir,img_name)
         with open(f'{img_full_path}', 'wb') as image:
             image.write(img_bytes)
-            logger.info(f'"{img_name}" is now downloaded!')
+            logger.debug(f'"{img_name}" is now downloaded!')
             
 
     def scrape_unsplash(self):
