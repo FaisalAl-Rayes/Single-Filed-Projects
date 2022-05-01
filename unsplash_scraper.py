@@ -61,20 +61,24 @@ class Unsplash:
         return img_urls
 
     def download_img(self, img_url: str):
+        # Setting the image name and setting up the next count for the next name.
+        img_name = f'{self.search_term}_{self.count + 1}.jpg'
+        self.count += 1
+
+        # Extracting the 
+        img_bytes = requests.get(img_url, headers=self.header).content
+
+        # Making a directory for the pictures in case there isn't one already.
         download_dir = f'{self.search_term}'
         if not os.path.exists(download_dir):
             os.mkdir(download_dir)
-        img_bytes = requests.get(img_url, headers=self.header).content
-        img_name = img_url.split('/')[3]
-
-        # An if statement to avoid downloading the ad photo (starts with "file" not "photo")
-        if img_name[:5] == 'photo':
-            img_name = f'{self.search_term}_{self.count + 1}.jpg'
-            img_full_path = os.path.join(os.path.realpath(os.getcwd()),download_dir,img_name)
-            with open(f'{img_full_path}', 'wb') as image:
-                image.write(img_bytes)
-                logger.info(f'"{img_name}" is now downloaded!')
-                self.count += 1
+        
+        # Saving the images.
+        img_full_path = os.path.join(os.path.realpath(os.getcwd()),download_dir,img_name)
+        with open(f'{img_full_path}', 'wb') as image:
+            image.write(img_bytes)
+            logger.info(f'"{img_name}" is now downloaded!')
+            
 
     def scrape_unsplash(self):
         t1 = perf_counter()
