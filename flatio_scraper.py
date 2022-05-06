@@ -160,7 +160,11 @@ class Flatio:
                 smtp.login(GOOGLE_EMAIL_ADDRESS, GOOGLE_APP_PASSWORD)
                 # Sending the message.
                 smtp.send_message(msg)
+            
+            # Informing message.
+            print(f"{len(good_prices)} Result(s) found and were sent by email!")
         else:
+            # Informing message.
             print("There were no offers that fall under the maximum price limit!")
 
 
