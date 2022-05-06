@@ -167,8 +167,7 @@ class Flatio:
             # Informing message.
             print("There were no offers that fall under the maximum price limit!")
 
-
-if __name__ == "__main__":
+def main():
     # Base requirements input.
     city = input("Please enter the name of the city you would like to stay in: ")
     move_in = input("Please enter the date you would like to move in (in the format of YEAR-MONTH-DAY): ")
@@ -185,3 +184,7 @@ if __name__ == "__main__":
         max_price = input("What maximum price limit would be considered a good price for you?: ")
         Flat = Flatio(city, move_in, move_out)
         Flat.good_price_alert(max_price)
+
+
+if __name__ == "__main__":
+    main()
