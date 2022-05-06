@@ -117,7 +117,7 @@ class Flatio:
             if ',' in price:
                 price = price.replace(",", "")
             price = round(float(price))
-            price = f'{price:,d}'
+            price = f'{price:,}'
 
             # The formatted price-currency representation.
             formated_price_currency = ' '.join([price, currency])
